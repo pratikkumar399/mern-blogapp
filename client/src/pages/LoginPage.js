@@ -1,25 +1,37 @@
 import React from 'react'
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../components/UserContext';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    function login(e) {
+    const [redirect, setRedirect] = useState(false);
+    const { setUserInfo } = useContext(UserContext);
+    async function login(e) {
         e.preventDefault();
-        fetch('http://localhost:8080/login', {
+        const response = await fetch('http://localhost:8080/login', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        }).then(res => res.json())
-            .then(data => {
-                if (data.status === 200) {
-                    alert('Login Successful');
-                }
-                else {
-                    alert('Login Failed');
-                }
-            })
+            credentials: 'include',
+            body: JSON.stringify({ username, password }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.status === 200) {
+            response.json().then(userInfo => {
+                setUserInfo(userInfo);
+                setRedirect(true);
+            });
+        }
+        else {
+            alert('Login Failed');
+        }
+    }
+
+    if (redirect) {
+        return <Navigate to='/' />
     }
 
     return (
