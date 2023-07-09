@@ -7,11 +7,18 @@ const RegisterPage = () => {
 
     async function register(e) {
         e.preventDefault();
-        await fetch('http://localhost:8080/register', {
+        const response = await fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
+
+        if (response.status === 200) {
+            alert('Registered Successfully');
+        }
+        else {
+            alert('Registration Failed');
+        }
     }
     return (
         <form className='register' onSubmit={register}>
