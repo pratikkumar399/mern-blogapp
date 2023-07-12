@@ -11,5 +11,8 @@
   "scripts": {
     "start": "nodemon start",
     "build": "npm i"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
