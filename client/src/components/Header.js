@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "./UserContext";
 
 export default function Header() {
@@ -12,7 +13,7 @@ export default function Header() {
                 setUserInfo(userInfo);
             });
         });
-    }, []);
+    }, [setUserInfo]);
 
     function logout() {
         fetch('http://localhost:8080/logout', {
