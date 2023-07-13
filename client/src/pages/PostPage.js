@@ -9,7 +9,7 @@ export default function PostPage() {
     const { userInfo } = useContext(UserContext);
     const { id } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:8080/post/${id}`)
+        fetch(`https://mernapp-4kgs.onrender.com/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);
@@ -35,7 +35,7 @@ export default function PostPage() {
                 </div>
             )}
             <div className="image">
-                <img src={`http://localhost:8080/${postInfo.cover}`} alt="" />
+                <img src={`https://mernapp-4kgs.onrender.com/${postInfo.cover}`} alt="" />
             </div>
             <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
         </div>

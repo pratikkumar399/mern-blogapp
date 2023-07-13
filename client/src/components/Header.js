@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 export default function Header() {
     const { setUserInfo, userInfo } = useContext(UserContext);
     useEffect(() => {
-        fetch('http://localhost:8080/profile', {
+        fetch('https://mernapp-4kgs.onrender.com/profile', {
             credentials: 'include',
         }).then(response => {
             response.json().then(userInfo => {
@@ -16,7 +16,7 @@ export default function Header() {
     }, [setUserInfo]);
 
     function logout() {
-        fetch('http://localhost:8080/logout', {
+        fetch('https://mernapp-4kgs.onrender.com/logout', {
             credentials: 'include',
             method: 'POST',
         });

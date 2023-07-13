@@ -7,7 +7,7 @@ const RegisterPage = () => {
 
     async function register(e) {
         e.preventDefault();
-        const response = await fetch('http://localhost:8080/register', {
+        const response = await fetch('https://mernapp-4kgs.onrender.com/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
